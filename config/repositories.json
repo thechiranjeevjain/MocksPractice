@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "repositories": [
+    {
+      "name": "DSA",
+      "environmentVariable": "MOCK_DSA_ROOT",
+      "relativeToPracticeParent": "Codes/DSA10days",
+      "windowsFallback": "G:\\TechStudyNotes\\Codes\\DSA10days"
+    },
+    {
+      "name": "LLD",
+      "environmentVariable": "MOCK_LLD_ROOT",
+      "relativeToPracticeParent": "LLDProjects",
+      "windowsFallback": "G:\\TechStudyNotes\\LLDProjects"
+    },
+    {
+      "name": "HLD",
+      "environmentVariable": "MOCK_HLD_ROOT",
+      "relativeToPracticeParent": "SystemDesignProjects",
+      "windowsFallback": "G:\\TechStudyNotes\\SystemDesignProjects"
+    }
+  ],
+  "extensions": [".md", ".java", ".json", ".xml", ".yml", ".yaml", ".sql", ".properties", ".ps1", ".cmd", ".sh"],
+  "excludedDirectoryNames": [".git", ".idea", "target", "build", "out", "node_modules", ".m2repo", "_archive", "coverage", "dist"]
+}

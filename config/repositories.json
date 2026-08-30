@@ -5,21 +5,55 @@
       "name": "DSA",
       "environmentVariable": "MOCK_DSA_ROOT",
       "relativeToPracticeParent": "Codes/DSA10days",
-      "windowsFallback": "G:\\TechStudyNotes\\Codes\\DSA10days"
+      "windowsFallback": "G:\\TechStudyNotes\\Codes\\DSA10days",
+      "required": true,
+      "profileScan": true
     },
     {
       "name": "LLD",
       "environmentVariable": "MOCK_LLD_ROOT",
       "relativeToPracticeParent": "LLDProjects",
-      "windowsFallback": "G:\\TechStudyNotes\\LLDProjects"
+      "windowsFallback": "G:\\TechStudyNotes\\LLDProjects",
+      "required": true,
+      "profileScan": true
     },
     {
       "name": "HLD",
       "environmentVariable": "MOCK_HLD_ROOT",
       "relativeToPracticeParent": "SystemDesignProjects",
-      "windowsFallback": "G:\\TechStudyNotes\\SystemDesignProjects"
+      "windowsFallback": "G:\\TechStudyNotes\\SystemDesignProjects",
+      "required": true,
+      "profileScan": true
+    },
+    {
+      "name": "MOCK_HISTORY",
+      "environmentVariable": "MOCK_PEER_ROOT",
+      "relativeToPracticeParent": "MocksPractice/sessions",
+      "windowsFallback": "G:\\TechStudyNotes\\MocksPractice\\sessions",
+      "required": false,
+      "profileScan": false,
+      "completedSessionsOnly": true,
+      "extensionsCsv": ".md,.java,.json,.xml,.properties,.ps1,.cmd,.sh"
+    },
+    {
+      "name": "OFFICE_NOTES",
+      "environmentVariable": "MOCK_OFFICE_ROOT",
+      "relativeToPracticeParent": "Gen4Projects/CJOfficeNotes",
+      "windowsFallback": "G:\\TechStudyNotes\\Gen4Projects\\CJOfficeNotes",
+      "required": false,
+      "profileScan": true,
+      "extensionsCsv": ".md"
+    },
+    {
+      "name": "CANDIDATE_DOSSIER",
+      "environmentVariable": "CANDIDATE_DOSSIER_ROOT",
+      "relativeToPracticeParent": "company-specific",
+      "windowsFallback": "G:\\TechStudyNotes\\company-specific",
+      "required": false,
+      "profileScan": true,
+      "extensionsCsv": ".md,.txt,.pdf,.docx,.json"
     }
   ],
-  "extensions": [".md", ".java", ".json", ".xml", ".yml", ".yaml", ".sql", ".properties", ".ps1", ".cmd", ".sh"],
+  "defaultExtensions": [".md", ".java", ".json", ".xml", ".yml", ".yaml", ".sql", ".properties", ".ps1", ".cmd", ".sh"],
   "excludedDirectoryNames": [".git", ".idea", "target", "build", "out", "node_modules", ".m2repo", "_archive", "coverage", "dist"]
 }

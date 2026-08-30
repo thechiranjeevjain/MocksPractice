@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "session": "2026/08/26/session-01",
-  "frozenAt": "2026-08-29T10:23:09.246010300Z",
+  "session": "sessions/session-0001-2026-08-26",
+  "frozenAt": "2026-08-30T08:40:50.979750200Z",
   "files": [
-    {"relativePath": "00_README.md", "sha256": "ccb5b3cf8a3b0a75204d31ddd46b6918df7dd534ce7ad5c365b22402d15f6a34"},
+    {"relativePath": "00_README.md", "sha256": "d8ae1ba7a442711e8ffdca86c66a2cf8867c4469be714f64a12d587d3ff59edf"},
     {"relativePath": "01_PROJECT_DEEP_DIVE.md", "sha256": "4061618300ab18cf74797ca26421600358e1898c7042f5a44cc97ecbf003b6ad"},
     {"relativePath": "02_JAVA_JVM.md", "sha256": "754e633b11b5cb3447a1b8db27ad08becd91cb8fb417e8ade90c7675baf2cabe"},
     {"relativePath": "03_CONCURRENCY.java", "sha256": "cd50437c53ca362236d81c45f9b85b963c23e0c55f5491b301c74e9aa5d9283c"},
@@ -18,8 +18,8 @@
     {"relativePath": "SCORECARD.md", "sha256": "0d4d29ae0012c976ddde6008cca425b2f09bb6c66a4a49cd9ca37e81ed05fd87"},
     {"relativePath": "SESSION_REVIEW.md", "sha256": "2c1d48865f19839871905b94e251f34ce36ad694d8b74edf6d243e19112f2b06"},
     {"relativePath": "pom.xml", "sha256": "71bcb13a9a323a6b6a93285f03e41bf62cdaa835af2589b8cad4de1d82eab807"},
-    {"relativePath": "scripts/run-test.ps1", "sha256": "06b176f486b194c5a78b0817b0c77dab467942c10b692d9d49b63ed985d52436"},
-    {"relativePath": "scripts/run-test.sh", "sha256": "3ff0220d5031725f4b7e9ecca8de89b30e1f8f9cf2ac53088d71ae22de01de67"},
+    {"relativePath": "scripts/run-test.ps1", "sha256": "2c5b2b5d79ddf38a768674812a332e62cd25d03b1dda5625626f70f6588ac527"},
+    {"relativePath": "scripts/run-test.sh", "sha256": "0785c3c415fbb92afe4cbd822d21c97cb0d46544fa2db34747cfbb9211b12cd3"},
     {"relativePath": "scripts/test-all.cmd", "sha256": "5b25fe5af7f6a8b6915748bfea20cfaa1e63ab7580af67f3f11be898e36e55b7"},
     {"relativePath": "scripts/test-all.sh", "sha256": "50d930cf784e5cab1b8b1f5256acc34f4c9b3219481f88f1742949b3e12cd9fa"},
     {"relativePath": "scripts/test-concurrency.cmd", "sha256": "56334783bb75663834645781ed0847ca43bbb470497eba2a862a95c5cd2e8e86"},

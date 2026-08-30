@@ -14,7 +14,7 @@ review_root="${REVIEW_OS_ROOT:-$(cd -- "$practice_root/../review-os" 2>/dev/null
 [[ -d "$review_root" ]] || { echo "Review OS not found. Set REVIEW_OS_ROOT." >&2; exit 2; }
 jar="$review_root/target/review-os-1.0.0.jar"
 if [[ ! -f "$jar" ]]; then
-  if [[ -x "$review_root/mvnw" ]]; then "$review_root/mvnw" -q -DskipTests package; else sh "$review_root/mvnw" -q -DskipTests package; fi
+  if [[ -x "$review_root/mvnw" ]]; then "$review_root/mvnw" -q -DskipTests -Djacoco.skip=true package; else sh "$review_root/mvnw" -q -DskipTests -Djacoco.skip=true package; fi
 fi
 normalized="$(java -cp "$jar" "$practice_root/tools/AddCorrection.java" "$practice_root" "$id" "$title" "$area" "$difficulty" "$session_path" | tail -n 1)"
 exec bash "$review_root/scripts/review-repo.sh" "$practice_root" done "$normalized" "$rating" \

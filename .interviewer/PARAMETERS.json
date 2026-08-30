@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "difficulty": {"minimum": 3.0, "default": 3.25, "mediumMaximum": 3.5, "stretchMaximum": 4.0, "maximumStretchItems": 1},
+  "targetWinProbability": {"minimum": 0.70, "maximum": 0.85},
+  "newGate": 3,
+  "maximumNewPatternsPerSession": 1,
+  "maximumSessionsWithoutAreaCoverage": 3,
+  "fullProfileEveryNthSession": 7,
+  "modes": {"Full": 180, "Standard": 120, "Compressed": 60, "Micro": 20}
+}

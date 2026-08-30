@@ -1,2 +1,8 @@
 **/target/
 *.tmp
+cache/.venv/
+cache/*.sqlite3
+cache/exports/
+.interviewer/archive/**/*.sqlite3
+**/__pycache__/
+*.pyc

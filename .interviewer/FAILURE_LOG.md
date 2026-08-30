@@ -2,7 +2,7 @@
 
 No demonstrated recurring misses yet.
 
-After final grading, record only recurring high-value misses in this compact form:
+After final grading, record only recurring high-value misses in this compact form. A single miss belongs in the session review; add it here only when it recurs.
 
 | Last observed | Area | Recurring miss | Generator piece missing | Next cold retrieval |
 |---|---|---|---|---|

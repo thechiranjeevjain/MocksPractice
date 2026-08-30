@@ -8,7 +8,11 @@ fi
 test_class="$1"; round="$2"
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 session_root="$(cd -- "$script_dir/.." && pwd)"
-practice_root="$(cd -- "$session_root/../../../.." && pwd)"
+practice_root="$session_root"
+while [[ "$practice_root" != "/" && ! -f "$practice_root/.ai/INTERVIEW_AGENT.md" ]]; do
+  practice_root="$(dirname -- "$practice_root")"
+done
+[[ -f "$practice_root/.ai/INTERVIEW_AGENT.md" ]] || { echo "MocksPractice root was not found above the session directory." >&2; exit 2; }
 review_root="${REVIEW_OS_ROOT:-$(cd -- "$practice_root/../review-os" 2>/dev/null && pwd || true)}"
 [[ -d "$review_root" ]] || { echo "Review OS not found. Set REVIEW_OS_ROOT." >&2; exit 2; }
 

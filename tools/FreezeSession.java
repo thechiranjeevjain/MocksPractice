@@ -9,7 +9,7 @@ import java.util.HexFormat;
 import java.util.List;
 import java.util.stream.Stream;
 
-/** Cross-platform freeze/verify tool for candidate session files. Requires Java 21+. */
+/** Cross-platform freeze/verify tool for immutable candidate paper files. Excludes target/ and solutions/. Requires Java 21+. */
 public final class FreezeSession {
     private record Entry(String relativePath, String sha256) {}
 
@@ -23,7 +23,7 @@ public final class FreezeSession {
                 .toAbsolutePath().normalize();
         if (!session.startsWith(practice) || !Files.isDirectory(session)) throw new IllegalArgumentException("Session must exist inside MocksPractice.");
         String relativeSession = practice.relativize(session).toString().replace('\\', '/');
-        Path manifest = practice.resolve(".interviewer/frozen/" + relativeSession.replace('/', '-') + ".json");
+        Path manifest = practice.resolve(".interviewer/frozen/" + session.getFileName() + ".json");
         List<Entry> entries = entries(session);
         if (args.length == 3 && "--verify".equals(args[2])) {
             verify(manifest, entries);
@@ -39,6 +39,7 @@ public final class FreezeSession {
         try (Stream<Path> stream = Files.walk(session)) {
             return stream.filter(Files::isRegularFile)
                     .filter(path -> !session.relativize(path).startsWith("target"))
+                    .filter(path -> !session.relativize(path).startsWith("solutions"))
                     .sorted(Comparator.comparing(Path::toString))
                     .map(path -> {
                         try { return new Entry(session.relativize(path).toString().replace('\\', '/'), sha256(path)); }

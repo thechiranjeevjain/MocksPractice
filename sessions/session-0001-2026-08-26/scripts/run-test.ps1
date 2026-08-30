@@ -5,7 +5,12 @@ param(
 
 $ErrorActionPreference = 'Continue'
 $SessionRoot = Split-Path -Parent $PSScriptRoot
-$PracticeRoot = [System.IO.Path]::GetFullPath((Join-Path $SessionRoot '..\..\..\..'))
+$cursor = [System.IO.DirectoryInfo]$SessionRoot
+while ($null -ne $cursor -and -not (Test-Path -LiteralPath (Join-Path $cursor.FullName '.ai\INTERVIEW_AGENT.md'))) {
+    $cursor = $cursor.Parent
+}
+if ($null -eq $cursor) { throw 'MocksPractice root was not found above the session directory.' }
+$PracticeRoot = $cursor.FullName
 $EvidenceLog = Join-Path $PracticeRoot '.interviewer\EVIDENCE_LOG.md'
 $ReviewOsRoot = if ($env:REVIEW_OS_ROOT) { [IO.Path]::GetFullPath($env:REVIEW_OS_ROOT) } else { [IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $PracticeRoot) 'review-os')) }
 $Maven = Join-Path $ReviewOsRoot 'mvnw.cmd'

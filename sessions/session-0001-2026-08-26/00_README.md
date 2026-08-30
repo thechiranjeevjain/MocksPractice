@@ -2,7 +2,7 @@
 
 Date: 2026-08-26
 
-Session: 01
+Session: 0001
 Target duration: 180 minutes
 
 ## Rules
@@ -14,7 +14,7 @@ Target duration: 180 minutes
 - Run the provided visible tests where useful and debug independently.
 - Write reasoning where requested; do not change question specifications or tests.
 - Passing visible tests does not guarantee full marks.
-- The examination is frozen. When finished, return to Codex and say `DONE`.
+- The examination is frozen. `solutions/` remains locked until grading completes. When finished, return to Codex and say `DONE`.
 
 ## Suggested timing
 

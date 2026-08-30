@@ -33,7 +33,7 @@ public final class AddCorrection {
             problem.setDifficulty(difficulty);
             problem.setTags(List.of("mock-correction", slug(area)));
             problem.setCodePath(sessionPath);
-            problem.setNotesPath("PROGRESS.md");
+            problem.setNotesPath(".interviewer/PROGRESS.md");
             problem.setGithubUrl("");
             problem.setPrompt("Cold-reconstruct " + title + " before opening sources or using AI. Produce Trigger, Pattern, "
                     + "Invariant, Template, Fallback, and Optimization; then perform it, defend it, and solve one changed-constraint variation.");

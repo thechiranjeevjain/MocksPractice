@@ -27,7 +27,7 @@ The unit of progress is cold reconstruction under interview conditions, not time
 
 - A frozen mock is the cold attempt; candidate files contain no answer key or pattern leak.
 - `DONE` starts audit and viva before teaching or final corrections.
-- Only the top three demonstrated gaps enter `FAILURE_LOG.md` and the Review OS correction deck.
+- Only the top three demonstrated gaps enter `.interviewer/FAILURE_LOG.md` and the Review OS correction deck.
 - Each correction card is retrieved cold before its source is opened.
 - Variations change one meaningful constraint while preserving the competency being tested.
 - Mastery changes only from repeated performance evidence.

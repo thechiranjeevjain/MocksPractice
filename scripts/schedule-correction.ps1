@@ -35,7 +35,7 @@ if ($Existing.Count -eq 0) {
         difficulty = $Difficulty
         tags = @('mock-correction', ($Area.ToLowerInvariant() -replace '[^a-z0-9]+', '-').Trim('-'))
         codePath = $SessionPath
-        notesPath = 'PROGRESS.md'
+        notesPath = '.interviewer/PROGRESS.md'
         githubUrl = ''
         prompt = "Cold-reconstruct $Title before opening sources or using AI. Produce Trigger, Pattern, Invariant, Template, Fallback, and Optimization; then perform it, defend it, and solve one changed-constraint variation."
         answer = ''

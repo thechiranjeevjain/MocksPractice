@@ -1,14 +1,15 @@
-﻿# Repository Inventory
+# Repository Inventory
 
-Scan: 2026-08-29T10:22:47.9877015Z
+Scan: 2026-08-30T08:46:41.006126400Z
 
 ## DSA
 
 - Root: G:\TechStudyNotes\Codes\DSA10days
-- Included source files: 292
+- Available: true
+- Included source files: 294
 - Extensions:
   - .cmd: 15
-  - .java: 183
+  - .java: 185
   - .json: 1
   - .md: 70
   - .properties: 1
@@ -20,18 +21,20 @@ Scan: 2026-08-29T10:22:47.9877015Z
 ## LLD
 
 - Root: G:\TechStudyNotes\LLDProjects
-- Included source files: 225
+- Available: true
+- Included source files: 165
 - Extensions:
   - .cmd: 1
-  - .java: 170
+  - .java: 108
   - .json: 1
-  - .md: 36
+  - .md: 38
   - .properties: 1
   - .xml: 16
 
 ## HLD
 
 - Root: G:\TechStudyNotes\SystemDesignProjects
+- Available: true
 - Included source files: 1782
 - Extensions:
   - .cmd: 8
@@ -44,3 +47,19 @@ Scan: 2026-08-29T10:22:47.9877015Z
   - .xml: 90
   - .yaml: 90
   - .yml: 124
+
+## OFFICE_NOTES
+
+- Root: UNAVAILABLE
+- Available: false
+- Included source files: 0
+- Extensions:
+
+## CANDIDATE_DOSSIER
+
+- Root: G:\TechStudyNotes\company-specific
+- Available: true
+- Included source files: 27
+- Extensions:
+  - .json: 1
+  - .md: 26

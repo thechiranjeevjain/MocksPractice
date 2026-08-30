@@ -24,9 +24,10 @@ import java.util.stream.Stream;
 
 /** Maven-free, cross-platform repository snapshot tool. Requires Java 21+. */
 public final class RepoSnapshot {
-    private record RepositoryConfig(String name, String environmentVariable, String relativePath, String fallback) {}
+    private record RepositoryConfig(String name, String environmentVariable, String relativePath, String fallback,
+                                    boolean required, boolean profileScan, Set<String> extensions) {}
     private record FileRecord(String repository, String relativePath, long length, Instant modified, String sha256) {}
-    private record RepositorySummary(String name, Path root, Map<String, Integer> extensions, int count) {}
+    private record RepositorySummary(String name, String root, boolean available, Map<String, Integer> extensions, int count) {}
 
     public static void main(String[] args) throws Exception {
         if (args.length != 1) throw new IllegalArgumentException("Usage: java RepoSnapshot.java <practice-root>");
@@ -34,7 +35,7 @@ public final class RepoSnapshot {
         Path configPath = practiceRoot.resolve("config/repositories.json");
         String config = Files.readString(configPath, StandardCharsets.UTF_8);
         List<RepositoryConfig> repositories = parseRepositories(config);
-        Set<String> extensions = parseArray(config, "extensions");
+        Set<String> extensions = parseArray(config, "defaultExtensions");
         Set<String> excluded = parseArray(config, "excludedDirectoryNames");
 
         Path snapshotRoot = practiceRoot.resolve(".interviewer/snapshots");
@@ -45,11 +46,17 @@ public final class RepoSnapshot {
         List<FileRecord> records = new ArrayList<>();
         List<RepositorySummary> summaries = new ArrayList<>();
         for (RepositoryConfig repository : repositories) {
+            if (!repository.profileScan()) continue;
             Path root = resolveRoot(practiceRoot, repository);
+            if (root == null) {
+                summaries.add(new RepositorySummary(repository.name(), "UNAVAILABLE", false, Map.of(), 0));
+                continue;
+            }
+            Set<String> effectiveExtensions = repository.extensions().isEmpty() ? extensions : repository.extensions();
             Map<String, Integer> counts = new TreeMap<>();
             try (Stream<Path> paths = Files.walk(root)) {
                 paths.filter(Files::isRegularFile)
-                        .filter(path -> included(root, path, extensions, excluded))
+                        .filter(path -> included(root, path, effectiveExtensions, excluded))
                         .forEach(path -> {
                             try {
                                 String relative = root.relativize(path).toString().replace('\\', '/');
@@ -62,7 +69,7 @@ public final class RepoSnapshot {
                             }
                         });
             }
-            summaries.add(new RepositorySummary(repository.name(), root, counts,
+            summaries.add(new RepositorySummary(repository.name(), root.toString(), true, counts,
                     counts.values().stream().mapToInt(Integer::intValue).sum()));
         }
         records.sort(Comparator.comparing(FileRecord::repository).thenComparing(FileRecord::relativePath));
@@ -93,10 +100,13 @@ public final class RepoSnapshot {
         if (environment != null && !environment.isBlank()) candidates.add(environment);
         candidates.add(practiceRoot.getParent().resolve(repository.relativePath()).toString());
         if (repository.fallback() != null && !repository.fallback().isBlank()) candidates.add(repository.fallback());
-        return candidates.stream().map(Path::of).map(path -> path.toAbsolutePath().normalize())
-                .filter(Files::isDirectory).findFirst()
-                .orElseThrow(() -> new IllegalStateException("Repository " + repository.name()
-                        + " was not found. Keep it beside MocksPractice or set " + repository.environmentVariable() + "."));
+        Path found = candidates.stream().map(Path::of).map(path -> path.toAbsolutePath().normalize())
+                .filter(Files::isDirectory).findFirst().orElse(null);
+        if (found == null && repository.required()) {
+            throw new IllegalStateException("Repository " + repository.name()
+                    + " was not found. Keep it beside MocksPractice or set " + repository.environmentVariable() + ".");
+        }
+        return found;
     }
 
     private static boolean included(Path root, Path path, Set<String> extensions, Set<String> excluded) {
@@ -136,7 +146,9 @@ public final class RepoSnapshot {
         while (objects.find()) {
             String object = objects.group(1);
             result.add(new RepositoryConfig(field(object, "name"), field(object, "environmentVariable"),
-                    field(object, "relativeToPracticeParent"), optionalField(object, "windowsFallback")));
+                    field(object, "relativeToPracticeParent"), optionalField(object, "windowsFallback"),
+                    optionalBoolean(object, "required", true), optionalBoolean(object, "profileScan", true),
+                    parseCsv(optionalField(object, "extensionsCsv"))));
         }
         if (result.isEmpty()) throw new IllegalArgumentException("No repositories in config.");
         return result;
@@ -149,6 +161,20 @@ public final class RepoSnapshot {
         Matcher values = Pattern.compile("\"((?:\\\\.|[^\"])*)\"").matcher(array.group(1));
         while (values.find()) result.add(unescape(values.group(1)).toLowerCase(Locale.ROOT));
         return result;
+    }
+
+    private static Set<String> parseCsv(String value) {
+        if (value == null || value.isBlank()) return Set.of();
+        Set<String> result = new HashSet<>();
+        for (String entry : value.split(",")) {
+            if (!entry.isBlank()) result.add(entry.trim().toLowerCase(Locale.ROOT));
+        }
+        return result;
+    }
+
+    private static boolean optionalBoolean(String object, String name, boolean fallback) {
+        Matcher matcher = Pattern.compile("\\\"" + Pattern.quote(name) + "\\\"\\s*:\\s*(true|false)", Pattern.CASE_INSENSITIVE).matcher(object);
+        return matcher.find() ? Boolean.parseBoolean(matcher.group(1)) : fallback;
     }
 
     private static String field(String object, String name) {
@@ -177,7 +203,8 @@ public final class RepoSnapshot {
         for (int i = 0; i < summaries.size(); i++) {
             RepositorySummary summary = summaries.get(i);
             out.append("    {\"name\": \"").append(escape(summary.name())).append("\", \"root\": \"")
-                    .append(escape(summary.root().toString())).append("\", \"fileCount\": ").append(summary.count()).append("}");
+                    .append(escape(summary.root())).append("\", \"available\": ").append(summary.available())
+                    .append(", \"fileCount\": ").append(summary.count()).append("}");
             out.append(i + 1 == summaries.size() ? "\n" : ",\n");
         }
         out.append("  ],\n  \"files\": [\n");
@@ -215,6 +242,7 @@ public final class RepoSnapshot {
         StringBuilder out = new StringBuilder("# Repository Inventory\n\nScan: ").append(scannedAt).append("\n");
         for (RepositorySummary summary : summaries) {
             out.append("\n## ").append(summary.name()).append("\n\n- Root: ").append(summary.root())
+                    .append("\n- Available: ").append(summary.available())
                     .append("\n- Included source files: ").append(summary.count()).append("\n- Extensions:\n");
             summary.extensions().forEach((extension, count) -> out.append("  - ").append(extension).append(": ").append(count).append("\n"));
         }

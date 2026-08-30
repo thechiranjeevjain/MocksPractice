@@ -1,5 +1,7 @@
 # Senior Software Engineer Mock Interview
 
+> **QUESTION-ONLY SAMPLE:** This frozen paper is retained as a non-scored example. It is not an active exam, creates no mastery evidence, and intentionally keeps `solutions/LOCKED.md` to demonstrate the anti-peek state. Its canonical path is `sessions/session-0001`; the date remains metadata below.
+
 Date: 2026-08-26
 
 Session: 0001
@@ -14,7 +16,7 @@ Target duration: 180 minutes
 - Run the provided visible tests where useful and debug independently.
 - Write reasoning where requested; do not change question specifications or tests.
 - Passing visible tests does not guarantee full marks.
-- The examination is frozen. `solutions/` remains locked until grading completes. When finished, return to Codex and say `DONE`.
+- This question-only sample is frozen. Its `solutions/` folder intentionally remains locked; use the solved session-0002 sample to see editorial format.
 
 ## Suggested timing
 

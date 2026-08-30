@@ -41,12 +41,12 @@ Sessions are flat and globally numbered across all dates and years:
 
 ```text
 sessions/
-├── session-0001-2026-08-26/
-├── session-0002-2026-08-30/
-└── session-0003-2026-09-02/
+├── session-0001/
+├── session-0002/
+└── session-0003/
 ```
 
-The next number is the highest number recorded in `.interviewer/SESSION_HISTORY.md` plus one. Numbers never reset or get reused. During an attempt, `solutions/` contains only `LOCKED.md`; `DONE` replaces it with one six-part editorial per round. `solutions/` is a normal folder inside that session and the same MocksPractice Git repository, not a nested repository with its own `.git` directory.
+The next number is the highest number recorded in `.interviewer/SESSION_HISTORY.md` plus one. Numbers never reset or get reused. The date is stored in the ledger and README, not in the directory name. During an attempt, `solutions/` contains only `LOCKED.md`; `DONE` replaces it with one six-part editorial per round. `solutions/` is a normal folder inside that session and the same MocksPractice Git repository, not a nested repository with its own `.git` directory.
 
 ## Requirements
 
@@ -62,8 +62,8 @@ The next number is the highest number recorded in `.interviewer/SESSION_HISTORY.
 .\scripts\build-cache.cmd
 .\scripts\validate-workspace.cmd
 .\scripts\review-due.cmd
-.\scripts\freeze-session.cmd sessions\session-0001-2026-08-26
-.\scripts\verify-freeze.cmd sessions\session-0001-2026-08-26
+.\scripts\freeze-session.cmd sessions\session-0001
+.\scripts\verify-freeze.cmd sessions\session-0001
 ```
 
 Linux/macOS:
@@ -74,8 +74,8 @@ bash ./scripts/sync-sources.sh
 bash ./scripts/build-cache.sh
 bash ./scripts/validate-workspace.sh
 bash ./scripts/review-due.sh
-bash ./scripts/freeze-session.sh sessions/session-0001-2026-08-26
-bash ./scripts/verify-freeze.sh sessions/session-0001-2026-08-26
+bash ./scripts/freeze-session.sh sessions/session-0001
+bash ./scripts/verify-freeze.sh sessions/session-0001
 ```
 
 The Bash workflow does not require PowerShell. Windows and Unix entrypoints invoke the same Java 21 source-file tools for repository scanning and session freezing, so manifests and path rules stay consistent across operating systems.

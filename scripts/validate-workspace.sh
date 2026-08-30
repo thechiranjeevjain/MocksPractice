@@ -21,7 +21,7 @@ fi
 if [[ -d "$practice_root/sessions" ]]; then
   while IFS= read -r directory; do
     name="$(basename -- "$directory")"
-    [[ "$name" =~ ^session-[0-9]{4}-[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || { echo "Invalid flat session name: $name" >&2; exit 1; }
+    [[ "$name" =~ ^session-[0-9]{4}$ ]] || { echo "Invalid flat session name: $name" >&2; exit 1; }
   done < <(find "$practice_root/sessions" -mindepth 1 -maxdepth 1 -type d -print)
 fi
 bash "$script_dir/rebuild-profile.sh"

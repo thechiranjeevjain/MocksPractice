@@ -79,7 +79,7 @@ def completed_session_names() -> set[str]:
     for line in history.read_text(encoding="utf-8").splitlines():
         if "COMPLETED" not in line:
             continue
-        match = re.search(r"sessions/(session-\d{4}-\d{4}-\d{2}-\d{2})", line)
+        match = re.search(r"sessions/(session-\d{4})", line)
         if match:
             names.add(match.group(1))
     return names

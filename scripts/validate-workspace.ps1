@@ -22,7 +22,7 @@ $legacyYearDirectories = @(Get-ChildItem -LiteralPath $PracticeRoot -Directory |
 if ($legacyYearDirectories.Count -gt 0) { throw "Legacy year-based session directories found: $($legacyYearDirectories.Name -join ', ')" }
 $SessionsRoot = Join-Path $PracticeRoot 'sessions'
 if (Test-Path -LiteralPath $SessionsRoot) {
-    $invalidSessions = @(Get-ChildItem -LiteralPath $SessionsRoot -Directory | Where-Object { $_.Name -notmatch '^session-\d{4}-\d{4}-\d{2}-\d{2}$' })
+    $invalidSessions = @(Get-ChildItem -LiteralPath $SessionsRoot -Directory | Where-Object { $_.Name -notmatch '^session-\d{4}$' })
     if ($invalidSessions.Count -gt 0) { throw "Invalid flat session name: $($invalidSessions.Name -join ', ')" }
 }
 & (Join-Path $PSScriptRoot 'rebuild-profile.ps1')

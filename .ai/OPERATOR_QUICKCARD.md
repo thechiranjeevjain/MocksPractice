@@ -7,7 +7,7 @@ Use this daily; open the full `INTERVIEW_AGENT.md` only for lifecycle execution 
 1. Open the `MocksPractice` repository in Codex.
 2. Say `START MOCK` and optionally choose `Full`, `Standard`, `Compressed`, or `Micro`.
 3. The agent performs best-effort fast-forward sync, gated cache refresh, source/profile reconciliation, global session allocation, PLAN, BUILD, lock, and freeze.
-4. Work only in the returned `sessions/session-NNNN-YYYY-MM-DD/` folder.
+4. Work only in the returned `sessions/session-NNNN/` folder; the date is metadata, not part of the directory name.
 5. Fill at least one six-part generator cold: Trigger, Pattern, Invariant, Template, Fallback, Optimization.
 6. Say `DONE`; complete the viva before score/editorials are revealed.
 

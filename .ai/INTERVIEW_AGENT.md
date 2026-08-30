@@ -67,13 +67,14 @@ Honor explicit boundaries such as "I did not own X." Dossier material anchors qu
 Sessions are flat and globally numbered:
 
 ```text
-sessions/session-NNNN-YYYY-MM-DD/
+sessions/session-NNNN/
 ```
 
 - `NNNN` is four-digit, global, monotonic, and never resets by day, month, or year.
 - Allocate `NNNN = highest number ever recorded in .interviewer/SESSION_HISTORY.md + 1`.
 - Append the allocation to `SESSION_HISTORY.md` before building the exam. Abandoned numbers remain consumed and are never reused.
-- Example: `sessions/session-0002-2026-08-30/`.
+- Keep the calendar date as metadata in `SESSION_HISTORY.md` and the session README, not in the directory name.
+- Example: `sessions/session-0002/`.
 
 All longitudinal state lives under `.interviewer/`, including progress, mastery, failure log, evidence, history, coverage, gamification, self-model, plans, snapshots, sealed references, archive, and tuning log. `review/review.json` remains outside only because it is the Review OS data contract.
 
@@ -198,7 +199,7 @@ When the user says `START MOCK`:
 3. Scan living sources; record new material as `EXPOSED`, never mastered.
 4. Read bounded dossier anchors, persistent state, recent completed sessions, coverage debt, and Review OS priorities.
 5. Reconcile mastery gating and select pressure points within the medium/winnable contract.
-6. Allocate the next global session in `SESSION_HISTORY.md` and create `sessions/session-NNNN-YYYY-MM-DD/`.
+6. Allocate the next global session in `SESSION_HISTORY.md` and create `sessions/session-NNNN/`.
 7. `PLAN`: write the examiner-only plan under `.interviewer/plans/`.
 8. `BUILD`: generate the complete selected mode in one shot with neutral filenames, useful boilerplate, and visible tests.
 9. Put exactly one file in `session/solutions/`: `LOCKED.md`.

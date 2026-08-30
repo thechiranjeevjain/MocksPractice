@@ -108,6 +108,8 @@ Trend toward roughly 30% retrieval, 40% variation, and 30% transfer, but mastery
 - No curveballs and no zero-exposure topics.
 - Every technical question must be grounded in available DSA10days, LLD, HLD, CJOfficeNotes, dossier, or completed mock evidence.
 - If grounding is absent, omit the topic rather than surprise or demotivate the candidate.
+- DSA rounds are stricter: use a problem/pattern explicitly present in the current DSA10days corpus, a due correction derived from it, or a one-dimension variation after an exposed anchor. Do not import an unseen external problem merely to make the mock harder.
+- A variation may change the surface or one constraint, but it must remain recognizably solvable from the prepared pattern. If it requires an unprepared pattern, it is a forbidden curveball.
 
 ## 9. Modes, streak, XP, and belts
 
@@ -125,9 +127,10 @@ Every mode contains at least one six-part cold reconstruction. A completed mode 
 Track these areas in `.interviewer/TOPIC_COVERAGE.md` and allow no area to remain untested for more than three completed sessions:
 
 - DSA
-- Java/JVM
+- Core Java/JVM
 - Streams/functional
 - Concurrency
+- Spring Framework
 - Spring Boot
 - Distributed systems/DB
 - Infrastructure: Docker/Kubernetes/AWS
@@ -143,7 +146,7 @@ Coverage debt overrides the normal problem mix, while the no-zero-exposure rule 
 For a Full mock, normally use:
 
 1. Project/resume deep dive
-2. Java/JVM, with Java Streams and functional APIs rotating as first-class material
+2. Core Java/JVM, with Java Streams and functional APIs rotating as first-class material rather than being treated as incidental syntax
 3. Concurrency
 4. DSA retrieval
 5. DSA variation
@@ -157,7 +160,8 @@ For a Full mock, normally use:
 Round 10 rotation:
 
 - Odd global session: Distributed Systems/DB.
-- Even global session: Spring Boot plus Docker/Kubernetes/Cloud. AWS scope is ECR, EKS, RDS, ElastiCache, MSK, S3, and IAM.
+- Even global session: Spring Framework/Spring Boot plus Docker/Kubernetes/Cloud. Cover scoped medium subparts so both the application-platform and infrastructure areas receive evidence without turning the round into trivia. Spring scope includes IoC/DI, bean lifecycle/scopes, transactions, AOP/proxies, MVC/REST, configuration, testing, and Boot auto-configuration/Actuator when those subjects are present in the source corpus. AWS scope is ECR, EKS, RDS, ElastiCache, MSK, S3, and IAM.
+- Rotate infrastructure tools within the even-session slice: Docker images/containers, Kubernetes workloads/services/configuration/health, and the prepared AWS services. Do not require obscure commands or vendor trivia that the corpus does not expose.
 - Every third session, promote distributed systems to a full HLD in Round 9. Keep Round 10 parity but avoid duplicate prompts by using a complementary DB or cloud operational slice.
 
 Shorter modes preserve coverage and the mandatory six-part rep by combining or sampling rounds; they do not raise difficulty to compensate for reduced duration.

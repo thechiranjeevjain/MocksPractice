@@ -28,3 +28,5 @@ Use this daily; open the full `INTERVIEW_AGENT.md` only for lifecycle execution 
 ## Difficulty promise
 
 Medium `3.0-3.5`, target `70-85%` no-red-flags win, at most one stretch, and no zero-exposure curveballs.
+
+DSA must come from DSA10days or a recognizable one-dimension variation of an exposed anchor. Core Java/JVM, Streams/functional, concurrency, Spring Framework, Spring Boot, distributed systems/DB, Docker/Kubernetes, and the prepared AWS services rotate under the three-session coverage ceiling.

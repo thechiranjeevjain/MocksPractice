@@ -46,7 +46,7 @@ sessions/
 └── session-0003-2026-09-02/
 ```
 
-The next number is the highest number recorded in `.interviewer/SESSION_HISTORY.md` plus one. Numbers never reset or get reused. During an attempt, `solutions/` contains only `LOCKED.md`; `DONE` replaces it with one six-part editorial per round.
+The next number is the highest number recorded in `.interviewer/SESSION_HISTORY.md` plus one. Numbers never reset or get reused. During an attempt, `solutions/` contains only `LOCKED.md`; `DONE` replaces it with one six-part editorial per round. `solutions/` is a normal folder inside that session and the same MocksPractice Git repository, not a nested repository with its own `.git` directory.
 
 ## Requirements
 
@@ -85,5 +85,7 @@ Run the Windows commands on Windows and `bash ./scripts/validate-workspace.sh` o
 The daily entrypoint is [.ai/OPERATOR_QUICKCARD.md](.ai/OPERATOR_QUICKCARD.md); the full operating contract is [.ai/INTERVIEW_AGENT.md](.ai/INTERVIEW_AGENT.md). Machine snapshots support change detection; `.interviewer/REPO_INDEX.md` remains the semantic source model. See [.ai/FILE_MAP.md](.ai/FILE_MAP.md) and [.ai/DIAGRAMS.md](.ai/DIAGRAMS.md) for bounded navigation.
 
 The default difficulty is medium `3.0-3.5`, calibrated for a `70-85%` no-red-flags win, with at most one stretch item and no zero-exposure curveballs.
+
+DSA selection is limited to DSA10days exposure, due corrections derived from it, and recognizable one-dimension variations. The coverage ledger separately tracks Core Java/JVM, Streams/functional APIs, concurrency, Spring Framework, Spring Boot, distributed systems/DB, Docker/Kubernetes/AWS, LLD, HLD, project depth, and behavioral evidence so those areas cannot silently disappear from practice.
 
 The daily practice discipline is [LEARNING_METHOD.md](LEARNING_METHOD.md): cold attempt first, retrieve before rereading, fix only observed gaps, learn reusable generators, then space the next retrieval.
